@@ -24,7 +24,7 @@ springcloud服务中心
 
 *代码业务逻辑借鉴廖师兄微信点餐系统，项目待完善*
 
-*完美集成lombok，swagger的代码生成工具，让你不再为繁琐的注释和简单的接口实现而烦恼：entity集成，格式校验，swagger; dao自动加@ mapper，service自动注释和依赖; 控制器实现单表的增副改查*
+*完美集成lombok，swagger的代码生成工具，让你不再为繁琐的注释和简单的接口实现而烦恼：entity集成，格式校验，swagger; mapper由mybatisplus.config注解进行自动装备，service自动注释和依赖; 控制器实现单表的增副改查*
 
 ####各版本信息
 ```
