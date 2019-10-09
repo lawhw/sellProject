@@ -1,5 +1,3 @@
-时间：2019年10月09日
-
 **sell**
 
 以Spring cloud+mybatis-plus+swagger+mysql+lomback+代码生成器（聚合工程）
