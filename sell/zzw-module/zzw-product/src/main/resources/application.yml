@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: zzw-product
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: zhangzhiwen
+    password: 113536
+    url: jdbc:mysql://zhang:3306/sell?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT&useSSL=false&allowPublicKeyRetrieval=true
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+
+# mybaits-plus配置
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  global-config:
+    banner: false
+    db-config:
+      #字段策略 0:"忽略判断",1:"非 NULL 判断",2:"非空判断"
+      table-underline: true
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
