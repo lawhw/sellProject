@@ -1,14 +1,14 @@
 时间：2019年10月09日
 
-sell
+#####sell
 以Spring cloud+mybatis-plus+swagger+mysql+lomback+代码生成器（聚合工程）
-zzw-common
+#####zzw-common
 一些公共的配置.工具类.jar包.....都可以放进去，已有部分公用类。
-zzw-eureka
+#####zzw-eureka
 springcloud服务中心
-zzw-module
+#####zzw-module
 业务模块，可以根据业务需求添加服务聚合到该模块中，现已有部分模块可以供参考
-zzw-visual
+#####zzw-visual
 一些视图化服务，现已经加入代码生成器，期待加入其他服务。
 
 
