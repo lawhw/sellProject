@@ -2,7 +2,7 @@
 
 以Spring cloud+mybatis-plus+swagger+mysql+lomback+代码生成器（聚合工程）
 
-**zw-common**
+**zzw-common**
 
 一些公共的配置.工具类.jar包.....都可以放进去，已有部分公用类。
 
