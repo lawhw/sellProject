@@ -1,14 +1,11 @@
-***养成良好的记录***
 
-章志文 15797683468@163.com(可指出问题相互交流)
-
+infrastructure
+以Spring Boot整理一些基础架构集合（聚合工程）
 时间：2019年10月09日
 
 *代码业务逻辑借鉴廖师兄微信点餐系统，项目待完善*
 
 *完美集成lombok，swagger的代码生成工具，让你不再为繁琐的注释和简单的接口实现而烦恼：entity集成，格式校验，swagger; dao自动加@ mapper，service自动注释和依赖; 控制器实现单表的增副改查*
-***源码地址***
-- GitHub:[https://github.com/zzw1314520/sellProject](https://github.com/zzw1314520/sellProject)
 
 ####各版本信息
 ```
