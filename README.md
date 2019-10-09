@@ -24,7 +24,7 @@ springcloud服务中心
 
 **演示一下代码生成器**
 
-*完美集成lombok，swagger的代码生成工具，让你不再为繁琐的注释和简单的接口实现而烦恼：entity集成，格式校验，swagger; mapper由mybatisplus.config注解进行自动装备，service自动注释和依赖; 控制器实现单表的增副改查*
+*完美集成lombok，swagger的代码生成工具，让你不再为繁琐的注释和简单的接口实现而烦恼：entity集成，格式校验，swagger; mapper由mybatisplus.config注解进行自动装配，service自动注释和依赖; 控制器实现单表的增副改查*
 
 ####各版本信息
 ```
