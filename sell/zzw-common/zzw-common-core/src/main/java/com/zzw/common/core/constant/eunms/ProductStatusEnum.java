@@ -1,4 +1,4 @@
-package com.zzw.common.constant.eunms;
+package com.zzw.common.core.constant.eunms;
 
 import lombok.Getter;
 

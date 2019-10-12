@@ -1,4 +1,4 @@
-package com.zzw.common.constant;
+package com.zzw.common.core.constant;
 
 /**
  * @author liuyf

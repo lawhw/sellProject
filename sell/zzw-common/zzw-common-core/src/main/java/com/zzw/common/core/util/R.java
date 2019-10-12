@@ -1,6 +1,6 @@
 package com.zzw.common.core.util;
 
-import com.zzw.common.constant.CommonConstants;
+import com.zzw.common.core.constant.CommonConstants;
 import lombok.*;
 import lombok.experimental.Accessors;
 
