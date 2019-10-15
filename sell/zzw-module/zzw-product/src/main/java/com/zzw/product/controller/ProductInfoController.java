@@ -1,20 +1,20 @@
 package com.zzw.product.controller;
 
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.zzw.common.core.rest.controller.AbstractController;
-import com.zzw.common.core.util.R;
+import com.zzw.common.core.rest.baseVO.R;
+import com.zzw.core.api.dto.product.CartDTO;
 import com.zzw.core.api.po.product.ProductInfo;
+import com.zzw.core.api.vo.product.ProductVO;
 import com.zzw.product.service.IProductInfoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import java.util.Collection;
+import java.util.List;
 
 /**
  * <p>
@@ -32,12 +32,25 @@ public class ProductInfoController extends AbstractController<ProductInfo, Strin
 
     private IProductInfoService productInfoService;
 
+    @Override
     @ApiOperation(value = "查询所有" ,  notes="查询所有")
     @GetMapping(value = "")
-    public R list(ProductInfo e) throws Exception{
+    public R<List<ProductVO>> list(ProductInfo e) throws Exception{
         return new R(productInfoService.voList());
     }
 
+
+    @ApiOperation(value = "获取商品列表" ,  notes="根据Id获取商品列表，供fegin调用")
+    @GetMapping(value = "listByIdList")
+    public List<ProductInfo> listByIdList(@RequestParam List<String> idList) throws Exception{
+        return productInfoService.list(Wrappers.<ProductInfo>lambdaQuery().in(ProductInfo::getProductId,idList));
+    }
+
+    @ApiOperation(value = "减库存" ,  notes="减库存，供fegin调用")
+    @PutMapping(value = "decreaseStock")
+    public int decreaseStock(@RequestBody List<CartDTO> cartDTOList) throws Exception{
+        return productInfoService.decreaseStock(cartDTOList);
+    }
 
 }
 

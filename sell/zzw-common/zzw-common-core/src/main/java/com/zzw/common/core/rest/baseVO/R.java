@@ -1,4 +1,4 @@
-package com.zzw.common.core.util;
+package com.zzw.common.core.rest.baseVO;
 
 import com.zzw.common.core.constant.CommonConstants;
 import lombok.*;
@@ -22,11 +22,11 @@ public class R<T> implements Serializable {
 
 	@Getter
 	@Setter
-	private int code = CommonConstants.SUCCESS;
+	private int code = CommonConstants.SUCCESS_CODE;
 
 	@Getter
 	@Setter
-	private String msg = "success";
+	private String msg = CommonConstants.SUCCESS_MSG;
 
 
 	@Getter
@@ -51,7 +51,7 @@ public class R<T> implements Serializable {
 	public R(Throwable e) {
 		super();
 		this.msg = e.getMessage();
-		this.code = CommonConstants.FAIL;
+		this.code =CommonConstants.SUCCESS_CODE;
 	}
 
 	public R(int code, String msg) {
@@ -59,4 +59,18 @@ public class R<T> implements Serializable {
 		this.code = code;
 		this.msg = msg;
 	}
+
+
+	public static <T> R<T> fail(String msg) {
+		return new R<T>(CommonConstants.FAIL_CODE, msg, null);
+	}
+
+	public static <T> R<T> fail(T result) {
+		return new R<T>(CommonConstants.FAIL_CODE, CommonConstants.FAIL_MSG, result);
+	}
+
+	public static <T> R<T> fail(String msg, T result) {
+		return new R<T>(CommonConstants.FAIL_CODE, msg, result);
+	}
+
 }

@@ -8,7 +8,7 @@ package com.zzw.order.controller;
 import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.zzw.common.core.constant.eunms.ResultEnum;
 import com.zzw.common.core.exception.OrderException;
-import com.zzw.common.core.util.R;
+import com.zzw.common.core.rest.baseVO.R;
 import com.zzw.core.api.dto.order.OrderDTO;
 import com.zzw.core.api.form.order.OrderForm;
 import com.zzw.core.api.po.order.OrderMaster;
@@ -46,10 +46,10 @@ public class OrderMasterController extends AbstractController<OrderMaster,String
     @ApiOperation(value = "新增并关联对应关系" ,  notes="新增并关联对应关系")
     @ResponseBody
     @PostMapping(value = "/orderDTO")
-    public R post(@Valid @RequestBody OrderForm orderForm, BindingResult result) throws Exception {
+    public R<Map<String,String>> post(@Valid @RequestBody OrderForm orderForm, BindingResult bindingResult) throws Exception {
 //        validate(result);
-        if(result.hasErrors()){
-            throw new OrderException(ResultEnum.PARAM_ERROR.getCode(),result.getFieldError().getDefaultMessage());
+        if(bindingResult.hasErrors()){
+            throw new OrderException(ResultEnum.PARAM_ERROR.getCode(),bindingResult.getFieldError().getDefaultMessage());
         }
         //orderFrom -> orderDTO
         OrderDTO orderDTO = OrderForm2OrderDTO.convert(orderForm);
@@ -58,8 +58,9 @@ public class OrderMasterController extends AbstractController<OrderMaster,String
             log.error("[创建订单]购物车信息为空");
             throw  new OrderException(ResultEnum.CART_EMPTY);
         }
+        OrderDTO result = orderMasterService.create(orderDTO);
         Map<String,String> map = new HashMap<>();
-        map.put("orderId",orderDTO.getOrderId());
-        return new R<>(map);
+        map.put("orderId",result.getOrderId());
+        return new R(map);
     }
 }

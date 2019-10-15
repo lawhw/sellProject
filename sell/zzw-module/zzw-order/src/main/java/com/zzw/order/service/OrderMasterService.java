@@ -20,5 +20,10 @@ import com.zzw.core.api.po.order.OrderMaster;
  * 
  */
 public interface OrderMasterService extends IService<OrderMaster> {
+    /**
+     * 创建订单
+     * @param orderDTO
+     * @return
+     */
     OrderDTO create(OrderDTO orderDTO);
 }

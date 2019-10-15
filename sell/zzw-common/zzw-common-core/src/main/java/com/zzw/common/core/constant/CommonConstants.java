@@ -8,11 +8,21 @@ public interface CommonConstants {
 	/**
 	 * 成功标记
 	 */
-	Integer SUCCESS = 0;
+	Integer SUCCESS_CODE = 0;
 	/**
 	 * 失败标记
 	 */
-	Integer FAIL = 1;
+	Integer FAIL_CODE = 1;
+
+	/**
+	 * 成功信息
+	 */
+	String SUCCESS_MSG= "SUCCESS";
+
+	/**
+	 * 失败信息
+	 */
+	String FAIL_MSG= "FAIL";
 
 
 }

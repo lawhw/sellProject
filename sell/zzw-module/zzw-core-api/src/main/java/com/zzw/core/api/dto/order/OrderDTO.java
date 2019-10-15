@@ -6,6 +6,9 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.util.List;
+/**
+ * @author zhangzhiwen
+ */
 @Data
 public class OrderDTO extends OrderMaster {
     @ApiModelProperty(name = "orderDetailList" , value = "商品详情信息")
