@@ -1,6 +1,13 @@
 spring:
   application:
     name: zzw-config
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/zzw1314520/config
+          username: zzw1314520
+          password: z1135360847
 eureka:
   client:
     service-url:

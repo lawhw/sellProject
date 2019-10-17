@@ -25,7 +25,7 @@ public class MyGenerator {
 		public static final String AUTHOR = "zzw";
 		public static final String VERSION = "V1.0";
 		// 数据库连接信息：连接URL、用户名、秘密、数据库名
-		public static final String URL = "jdbc:mysql://zhang:3306/sell?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT&useSSL=false&allowPublicKeyRetrieval=true";
+		public static final String URL = "jdbc:mysql://zzw-mysql:3306/sell?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT&useSSL=false&allowPublicKeyRetrieval=true";
 		public static final String NAME = "zhangzhiwen";
 		public static final String PASS = "113536";
 		public static final String DATABASE = "sell";

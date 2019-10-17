@@ -3,7 +3,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: zhangzhiwen
     password: 113536
-    url: jdbc:mysql://zhang:3306/sell?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT&useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://zzw-mysql:3306/sell?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT&useSSL=false&allowPublicKeyRetrieval=true
   application:
     name: zzw-order
 eureka:
