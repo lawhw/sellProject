@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: zzw-config
+eureka:
+  client:
+    service-url:
+      defaultZone: http://zhang:8761/eureka

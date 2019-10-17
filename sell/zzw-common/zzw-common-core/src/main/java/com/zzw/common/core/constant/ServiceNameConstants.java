@@ -10,4 +10,9 @@ public interface ServiceNameConstants {
      */
     String PRODUCT_SERVICE = "zzw-product";
 
+    /**
+     * ORDER订单模块
+     */
+    String ORDER_SERVICE = "zzw-order";
+
 }

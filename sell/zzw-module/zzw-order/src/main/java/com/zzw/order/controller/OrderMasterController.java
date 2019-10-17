@@ -63,4 +63,5 @@ public class OrderMasterController extends AbstractController<OrderMaster,String
         map.put("orderId",result.getOrderId());
         return new R(map);
     }
+
 }
