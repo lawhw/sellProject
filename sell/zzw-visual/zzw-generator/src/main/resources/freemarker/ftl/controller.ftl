@@ -1,9 +1,3 @@
-/**
- * @filename:${entityName}Controller ${createTime}
- * @project ${project}  ${version}
- * Copyright(c) 2020 ${author} Co. Ltd. 
- * All right reserved. 
- */
 package ${controllerUrl};
 import ${entityUrl}.${entityName};
 import org.springframework.web.bind.annotation.RequestMapping;

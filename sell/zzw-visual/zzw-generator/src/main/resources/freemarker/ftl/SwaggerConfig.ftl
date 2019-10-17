@@ -1,9 +1,3 @@
-/**
- * @filename:${entityName}Controller ${createTime}
- * @project ${project}  ${version}
- * Copyright(c) 2020 ${author} Co. Ltd. 
- * All right reserved. 
- */
 package ${swaggerConfigUrl};
 
 import org.springframework.beans.factory.annotation.Value;
@@ -37,8 +31,7 @@ public class SwaggerConfig {
 	public static String SWAGGER_DESCRIPTION="API文档";   				//Swagger接口文档描述
 	public static String SWAGGER_VERSION="1.0";                         //Swagger接口文档版本
 	public final static String SWAGGER_URL="http://127.0.0.1:"+port;    //Swagger项目服务的URL
-	
-	//验证的页面http://127.0.0.1:8080/swagger-ui.html
+
 	@Bean
     public Docket createRestApi() {
         return new Docket(DocumentationType.SWAGGER_2)

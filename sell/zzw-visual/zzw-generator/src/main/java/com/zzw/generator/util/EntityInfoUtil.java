@@ -15,16 +15,9 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Copyright: Copyright (c) 2019 
- * 
  * <p>说明：  链接数据库并获取表信息</P>
  * @version: v3.0.0
  * @author: flying-cattle
- * 
- * Modification History:
- * Date         	Author          Version          Description
- *---------------------------------------------------------------*
- * 2019年4月9日      		flying-cattle   v3.0.0           initialize
  */
 public class EntityInfoUtil {
 	public static BasisInfo getInfo(BasisInfo bi) throws SQLException {

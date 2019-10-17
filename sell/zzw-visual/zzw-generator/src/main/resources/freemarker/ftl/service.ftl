@@ -1,9 +1,3 @@
-/**
- * @filename:${entityName}Service ${createTime}
- * @project ${project}  ${version}
- * Copyright(c) 2020 ${author} Co. Ltd. 
- * All right reserved. 
- */
 package ${serviceUrl};
 
 import ${entityUrl}.${entityName};

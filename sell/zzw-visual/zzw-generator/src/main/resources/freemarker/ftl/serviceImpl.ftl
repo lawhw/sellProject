@@ -1,9 +1,3 @@
-/**
- * @filename:${entityName}ServiceImpl ${createTime}
- * @project ${project}  ${version}
- * Copyright(c) 2018 ${author} Co. Ltd. 
- * All right reserved. 
- */
 package ${serviceImplUrl};
 
 import ${entityUrl}.${entityName};

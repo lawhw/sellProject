@@ -1,9 +1,3 @@
-/**
- * @filename:${entityName} ${createTime}
- * @project ${project}  ${version}
- * Copyright(c) 2020 ${author} Co. Ltd. 
- * All right reserved. 
- */
 package ${entityUrl};
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;

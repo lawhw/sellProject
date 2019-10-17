@@ -12,8 +12,7 @@ import java.io.Serializable;
 
 /**
  * app分页组件
- * @author bianP
- * @version $Id: AppPage.java, v 0.1 2018年06月20日 下午2:31:23 
+ * @author zzw
  */
 @Data
 public class PageParam<T>  implements Serializable{
