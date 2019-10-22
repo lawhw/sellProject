@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.zzw.common.core.config.FeignBeanFactoryPostProcessor

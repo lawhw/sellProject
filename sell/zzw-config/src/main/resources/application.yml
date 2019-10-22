@@ -1,14 +1,28 @@
 spring:
+  rabbitmq:
+    host: zzw-rabbitmq
+    port: 5672
+    username: zhangzhiwen
+    password: 113536
   application:
     name: zzw-config
   cloud:
     config:
       server:
         git:
+          #远程配置地址（git.码云等等平台）
           uri: https://github.com/zzw1314520/config
           username: zzw1314520
           password: z1135360847
+#          指定配置放取地址
+#          basedir:
 eureka:
   client:
     service-url:
       defaultZone: http://zhang:8761/eureka
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
