@@ -17,7 +17,7 @@ package com.zzw.generator.convert;
  * Modification History:
  * Date         		Author        Version          Description
  *---------------------------------------------------------------*
- * 2019年4月9日      		flying-cattle     v3.0.0           initialize
+ * 2019年4月9日      	zhangzhiwen     v3.0.0           initialize
  */
 public class MySqlTypeConvert  implements ITypeConvert {
 

@@ -115,6 +115,7 @@
         <module>zzw-common</module>
         <module>zzw-visual</module>
         <module>zzw-config</module>
+        <module>zzw-gateway</module>
     </modules>
 
     <build>
@@ -136,7 +137,6 @@
                         </execution>
                     </executions>
                 </plugin>
-
             </plugins>
         </pluginManagement>
         <plugins>

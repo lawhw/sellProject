@@ -24,5 +24,15 @@ public interface CommonConstants {
 	 */
 	String FAIL_MSG= "FAIL";
 
+	String TOKEN = "token";
+
+	String TOKEN_TEMPLATE = "token_%s";
+
+	String OPENID = "openid";
+	/**
+	 * 过期时间(单位：s)
+	 */
+	Integer expire = 7200;
+
 
 }

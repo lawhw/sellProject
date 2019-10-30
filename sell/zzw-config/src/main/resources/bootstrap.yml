@@ -1,3 +1,5 @@
+server:
+  port: 8888
 spring:
   rabbitmq:
     host: zzw-rabbitmq
@@ -6,16 +8,13 @@ spring:
     password: 113536
   application:
     name: zzw-config
+  profiles:
+    active: native
   cloud:
     config:
       server:
-        git:
-          #远程配置地址（git.码云等等平台）
-          uri: https://github.com/zzw1314520/config
-          username: zzw1314520
-          password: z1135360847
-#          指定配置放取地址
-#          basedir:
+        native:
+          search-locations: classpath:/config/
 eureka:
   client:
     service-url:

@@ -29,7 +29,6 @@ import java.util.Set;
  */
 @Data
 @AllArgsConstructor
-//@NoArgsConstructor
 public class BasisInfo implements Serializable{
 	private static final long serialVersionUID = 123123L;
 

@@ -30,18 +30,18 @@ public class MyGenerator {
 		public static final String PASS = "113536";
 		public static final String DATABASE = "sell";
 		// 类信息：类名、对象名（一般是【类名】的首字母小些）、类说明、时间
-		public static final String CLASSNAME = "orderMaster";
-		public static final String TABLE = "order_master";
+		public static final String CLASSNAME = "userInfo";
+		public static final String TABLE = "user_info";
 		public static final String CLASSCOMMENT = "订单信息";
 		public static final String TIME = "2019年10月08日";
 		public static final String AGILE = new Date().getTime() + "";
 		// 路径信息，分开路径方便聚合工程项目，微服务项目
-		public static final String ENTITY_URL = "com.zzw.core.api.po.order";
-		public static final String DAO_URL = "com.zzw.order.mapper";
-		public static final String XML_URL = "com.zzw.order.mapper";
-		public static final String SERVICE_URL = "com.zzw.order.service";
-		public static final String SERVICE_IMPL_URL = "com.zzw.order.service.impl";
-		public static final String CONTROLLER_URL = "com.zzw.order.controller";
+		public static final String ENTITY_URL = "com.zzw.core.api.po.user";
+		public static final String DAO_URL = "com.zzw.user.mapper";
+		public static final String XML_URL = "com.zzw.user.mapper";
+		public static final String SERVICE_URL = "com.zzw.user.service";
+		public static final String SERVICE_IMPL_URL = "com.zzw.user.service.impl";
+		public static final String CONTROLLER_URL = "com.zzw.user.controller";
 		//是否是Swagger配置
 		public static final String IS_SWAGGER = "true";
 		
@@ -56,7 +56,7 @@ public class MyGenerator {
 			bi = EntityInfoUtil.getInfo(bi);
 //			String fileUrl = "E:\\a_item_work\\wallet\\wallet-manage\\wallet-manage-web\\src\\test\\java\\";// 生成文件存放位置
 			String entityUrl = "F:\\学习项目\\点餐微服务\\sell\\zzw-module\\zzw-core-api\\src\\main\\java\\";// 生成文件存放位置
-			String fileUrl = "F:\\学习项目\\点餐微服务\\sell\\zzw-module\\zzw-order\\src\\main\\java\\";// 生成文件存放位置
+			String fileUrl = "F:\\学习项目\\点餐微服务\\sell\\zzw-module\\zzw-user\\src\\main\\java\\";// 生成文件存放位置
 			//开始生成文件
 			String aa1 = Generator.createEntity(entityUrl, bi).toString();
 			String aa2 = Generator.createDao(fileUrl, bi).toString(); 

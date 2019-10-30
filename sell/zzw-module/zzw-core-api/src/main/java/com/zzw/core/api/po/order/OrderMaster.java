@@ -29,8 +29,6 @@ import java.util.Date;
  * 
  */
 @Data
-@EqualsAndHashCode(callSuper = false)
-@Accessors(chain = true)
 public class OrderMaster extends Model<OrderMaster> {
 
 	private static final long serialVersionUID = 1570532989006L;

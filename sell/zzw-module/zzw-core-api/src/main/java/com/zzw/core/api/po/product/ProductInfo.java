@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -23,6 +25,7 @@ import java.io.Serializable;
 @Data
 @ApiModel
 @TableName("product_info")
+@JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"})
 public class ProductInfo extends Model<ProductInfo> {
 
     @TableId

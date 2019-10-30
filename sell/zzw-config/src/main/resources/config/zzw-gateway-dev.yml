@@ -1,0 +1,6 @@
+zuul:
+  routes:
+    zzw-product: /zzwProduct/**
+  ignored-patterns:
+#    - /zzwProduct/productInfo/listByIdList
+    - /zzw-product/productInfo/listByIdList

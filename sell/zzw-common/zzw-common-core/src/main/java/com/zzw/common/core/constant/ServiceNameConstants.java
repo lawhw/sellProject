@@ -11,7 +11,7 @@ public interface ServiceNameConstants {
     String PRODUCT_SERVICE = "zzw-product";
 
     /**
-     * ORDER订单模块
+     * ORDER订单模块的就看
      */
     String ORDER_SERVICE = "zzw-order";
 

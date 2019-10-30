@@ -41,8 +41,8 @@ public class ProductInfoController extends AbstractController<ProductInfo, Strin
 
 
     @ApiOperation(value = "获取商品列表" ,  notes="根据Id获取商品列表，供fegin调用")
-    @GetMapping(value = "listByIdList")
-    public List<ProductInfo> listByIdList(@RequestParam List<String> idList) throws Exception{
+    @PostMapping(value = "listByIdList")
+    public List<ProductInfo> listByIdList(@RequestBody List<String> idList) throws Exception{
         return productInfoService.list(Wrappers.<ProductInfo>lambdaQuery().in(ProductInfo::getProductId,idList));
     }
 

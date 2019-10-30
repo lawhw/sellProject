@@ -1,10 +1,12 @@
 package com.zzw.product.service.Impl;
 
+import com.baomidou.mybatisplus.core.toolkit.CollectionUtils;
 import com.baomidou.mybatisplus.core.toolkit.ObjectUtils;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zzw.common.core.constant.eunms.ResultEnum;
 import com.zzw.common.core.exception.ProductException;
+import com.zzw.common.core.util.JsonUtil;
 import com.zzw.core.api.dto.product.CartDTO;
 import com.zzw.core.api.po.product.ProductCategory;
 import com.zzw.core.api.po.product.ProductInfo;
@@ -14,8 +16,10 @@ import com.zzw.product.mapper.ProductCategoryMapper;
 import com.zzw.product.mapper.ProductInfoMapper;
 import com.zzw.product.service.IProductInfoService;
 import lombok.AllArgsConstructor;
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +39,8 @@ import java.util.stream.Collectors;
 public class ProductInfoServiceImpl extends ServiceImpl<ProductInfoMapper, ProductInfo> implements IProductInfoService {
     private ProductCategoryMapper productCategoryMapper;
     private ProductInfoMapper productInfoMapper;
+    private AmqpTemplate amqpTemplate;
+
 
     @Override
     public List<ProductVO> voList() {
@@ -50,20 +56,20 @@ public class ProductInfoServiceImpl extends ServiceImpl<ProductInfoMapper, Produ
         //3.从数据库查找类目
         List<ProductCategory> categoryList = productCategoryMapper.selectList(
                 Wrappers.<ProductCategory>query().lambda()
-                .in(ProductCategory::getCategoryType,categoryTypeList)
-                );
+                        .in(ProductCategory::getCategoryType, categoryTypeList)
+        );
 
         //4.构造数据
         List<ProductVO> productVOList = new ArrayList<>();
         categoryList.forEach(productCategory -> {
             ProductVO productVO = new ProductVO();
-            BeanUtils.copyProperties(productCategory,productVO);
+            BeanUtils.copyProperties(productCategory, productVO);
 
             List<ProductInfoVO> productInfoVOList = new ArrayList<>();
             productInfoList.forEach(productInfo -> {
-                if(productInfo.getCategoryType().equals(productCategory.getCategoryType())){
+                if (productInfo.getCategoryType().equals(productCategory.getCategoryType())) {
                     ProductInfoVO productInfoVO = new ProductInfoVO();
-                    BeanUtils.copyProperties(productInfo,productInfoVO);
+                    BeanUtils.copyProperties(productInfo, productInfoVO);
                     productInfoVOList.add(productInfoVO);
                 }
             });
@@ -75,22 +81,36 @@ public class ProductInfoServiceImpl extends ServiceImpl<ProductInfoMapper, Produ
 
     @Override
     public int decreaseStock(List<CartDTO> cartDTOList) {
-        AtomicInteger count = new AtomicInteger();
-        cartDTOList.forEach(cartDTO -> {
-           ProductInfo productInfo = productInfoMapper.selectById(cartDTO.getProductId());
-           //判断商品是否存在
-           if(ObjectUtils.isEmpty(productInfo)){
-               throw new ProductException(ResultEnum.PRODUCT_NOT_EXIST);
-           }
-           //判断库存信息
-           Integer result = productInfo.getProductStock() - cartDTO.getProductQuantity();
-           if(result < 0){
-               throw new ProductException(ResultEnum.PRODUCT_STOCK_ERROR);
-           }
-           productInfo.setProductStock(result);
-           count.addAndGet(productInfoMapper.updateById(productInfo));
-        });
-        return count.get();
+        List<ProductInfo> productInfoList = decreaseStockProcess(cartDTOList);
+        if (CollectionUtils.isEmpty(productInfoList)) {
+            return 0;
+        } else {
+            //发送mq消息
+            amqpTemplate.convertAndSend("productInfo", JsonUtil.toJson(productInfoList));
+            return productInfoList.size();
+        }
     }
+
+    @Transactional
+    public List<ProductInfo> decreaseStockProcess(List<CartDTO> cartDTOList) {
+        List<ProductInfo> productInfoList = new ArrayList<>();
+        cartDTOList.forEach(cartDTO -> {
+            ProductInfo productInfo = productInfoMapper.selectById(cartDTO.getProductId());
+            //判断商品是否存在
+            if (ObjectUtils.isEmpty(productInfo)) {
+                throw new ProductException(ResultEnum.PRODUCT_NOT_EXIST);
+            }
+            //判断库存信息
+            Integer result = productInfo.getProductStock() - cartDTO.getProductQuantity();
+            if (result < 0) {
+                throw new ProductException(ResultEnum.PRODUCT_STOCK_ERROR);
+            }
+            productInfo.setProductStock(result);
+            productInfoMapper.updateById(productInfo);
+            productInfoList.add(productInfo);
+        });
+        return productInfoList;
+    }
+
 
 }

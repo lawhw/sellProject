@@ -19,6 +19,7 @@
         <module>zzw-product</module>
         <module>zzw-core-api</module>
         <module>zzw-order</module>
+        <module>zzw-user</module>
     </modules>
 
 </project>

@@ -1,5 +1,7 @@
 package com.zzw.order.controller;
 
+import com.zzw.core.api.dto.order.OrderDTO;
+import com.zzw.core.api.po.order.OrderMaster;
 import com.zzw.order.message.StreamClient;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +22,20 @@ import java.util.Date;
 public class SendMessageController {
     private StreamClient streamClient;
 
+//    @GetMapping("/sendMessage")
+//    public void process(){
+//        streamClient.output().
+//                send(MessageBuilder.withPayload("now"+new Date()).build() );
+//    }
+
+    /**
+     * 发送orderDto
+     */
     @GetMapping("/sendMessage")
     public void process(){
+        OrderMaster orderMaster = new OrderMaster();
+        orderMaster.setOrderId("12345");
         streamClient.output().
-                send(MessageBuilder.withPayload("now"+new Date()).build() );
+                send(MessageBuilder.withPayload(orderMaster).build());
     }
-
 }

@@ -1,0 +1,14 @@
+spring:
+  cloud:
+    stream:
+      bindings:
+        input:
+          destination: myMessage
+        output:
+          destination: myMessage
+        myMessage:
+          group: zzw-order
+          content-type: application/json
+
+girl:
+  name: zhang1

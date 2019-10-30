@@ -26,7 +26,7 @@ public interface IProductInfoService extends IService<ProductInfo> {
 
     /**
      * 扣除库存
-     * * @return int
+     * @return int
      */
     int decreaseStock(List<CartDTO> cartDTOList);
 
