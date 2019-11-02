@@ -1,3 +1,4 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
   com.zzw.common.core.config.FeignBeanFactoryPostProcessor,\
-  com.zzw.common.core.config.JacksonConfig
+  com.zzw.common.core.config.JacksonConfig,\
+  com.zzw.common.core.config.CrossConfig

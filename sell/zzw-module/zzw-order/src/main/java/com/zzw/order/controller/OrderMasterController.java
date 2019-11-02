@@ -64,4 +64,11 @@ public class OrderMasterController extends AbstractController<OrderMaster,String
         return new R(map);
     }
 
+    @ApiOperation(value = "完结订单" ,  notes="新增并关联对应关系")
+    @ResponseBody
+    @PutMapping(value = "/finish")
+    public R<OrderDTO> finish(@RequestParam("orderId") String orderId) throws Exception {
+        return new R(orderMasterService.finish(orderId));
+    }
+
 }

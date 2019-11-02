@@ -1,6 +1,12 @@
 zuul:
-  routes:
-    zzw-product: /zzwProduct/**
+#  routes:
   ignored-patterns:
-#    - /zzwProduct/productInfo/listByIdList
-    - /zzw-product/productInfo/listByIdList
+#    - /zzw-product/productInfo/listByIdList
+  #全部服务忽略敏感头配置(全部服务都可以传递cookie)
+  sensitive-headers:
+  host:
+    connect-timeout-millis: 15000 #HTTP连接超时要比Hystrix的大
+    socket-timeout-millis: 60000   #socket超时
+ribbon:
+  ReadTimeout: 10000
+  ConnectTimeout: 10000

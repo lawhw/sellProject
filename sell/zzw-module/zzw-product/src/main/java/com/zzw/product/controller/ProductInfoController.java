@@ -35,14 +35,15 @@ public class ProductInfoController extends AbstractController<ProductInfo, Strin
     @Override
     @ApiOperation(value = "查询所有" ,  notes="查询所有")
     @GetMapping(value = "")
+//    @CrossOrigin 跨域注解
     public R<List<ProductVO>> list(ProductInfo e) throws Exception{
         return new R(productInfoService.voList());
     }
 
 
     @ApiOperation(value = "获取商品列表" ,  notes="根据Id获取商品列表，供fegin调用")
-    @PostMapping(value = "listByIdList")
-    public List<ProductInfo> listByIdList(@RequestBody List<String> idList) throws Exception{
+    @GetMapping(value = "listByIdList")
+    public List<ProductInfo> listByIdList(@RequestParam("idList") List<String> idList) throws Exception{
         return productInfoService.list(Wrappers.<ProductInfo>lambdaQuery().in(ProductInfo::getProductId,idList));
     }
 

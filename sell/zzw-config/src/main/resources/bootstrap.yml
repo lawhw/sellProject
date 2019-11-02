@@ -18,7 +18,8 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://zhang:8761/eureka
+      #此处的zzw-eureka是rancher里面的服务名
+      defaultZone: http://zzw-eureka:8761/eureka
 
 management:
   endpoints:

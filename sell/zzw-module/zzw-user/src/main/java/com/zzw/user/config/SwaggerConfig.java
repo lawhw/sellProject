@@ -26,11 +26,11 @@ public class SwaggerConfig {
 	@Value("${server.port}")
     private static String port;
 	
-	public static String CONTROLLER_URL="com.zzw.user.controller";    //Swagger扫描的接口路径
-	public static String SWAGGER_TITLE="API文档-zzw"; 	    		//Swagger接口文档标题
-	public static String SWAGGER_DESCRIPTION="API文档";   				//Swagger接口文档描述
+	public static String CONTROLLER_URL="com.zzw";    //Swagger扫描的接口路径
+	public static String SWAGGER_TITLE="API文档-用户相关"; 	    		//Swagger接口文档标题
+	public static String SWAGGER_DESCRIPTION="描述尼玛呢";   				//Swagger接口文档描述
 	public static String SWAGGER_VERSION="1.0";                         //Swagger接口文档版本
-	public final static String SWAGGER_URL="http://127.0.0.1:"+port;    //Swagger项目服务的URL
+	public final static String SWAGGER_URL="zhang"+port;    //Swagger项目服务的URL
 
 	@Bean
     public Docket createRestApi() {

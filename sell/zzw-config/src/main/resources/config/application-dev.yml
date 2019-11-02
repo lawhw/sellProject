@@ -12,11 +12,16 @@ spring:
     username: zhangzhiwen
     password: 113536
     url: jdbc:mysql://zzw-mysql:3306/sell?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT&useSSL=false&allowPublicKeyRetrieval=true
-    dbcp2:
-      validation-query: SELECT 1
-      test-while-idle: true
-      test-on-borrow: true
-      test-on-return: false
+    hikari:
+      connection-test-query: SELECT 1
+      minimum-idle: 3
+      maximum-pool-size: 10
+      max-lifetime: 30000
+  zipkin:
+    base-url: http://zzw-zipkin:9411
+  sleuth:
+    sampler:
+      probability: 1
 
 mybatis-plus:
   mapper-locations: classpath:/mapper/*Mapper.xml
@@ -29,3 +34,6 @@ mybatis-plus:
   configuration:
     map-underscore-to-camel-case: true
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+logging:
+  level:
+    org.springframework.cloud.betflix.feign: debug

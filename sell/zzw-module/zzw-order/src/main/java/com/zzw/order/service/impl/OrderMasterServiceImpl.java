@@ -1,11 +1,16 @@
 /**
  * @filename:OrderMasterServiceImpl 2019年10月08日
  * @project sell  V1.0
- * Copyright(c) 2018 zzw Co. Ltd. 
- * All right reserved. 
+ * Copyright(c) 2018 zzw Co. Ltd.
+ * All right reserved.
  */
 package com.zzw.order.service.impl;
 
+import com.baomidou.mybatisplus.core.toolkit.ObjectUtils;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.zzw.common.core.constant.eunms.OrderStatusEnum;
+import com.zzw.common.core.constant.eunms.ResultEnum;
+import com.zzw.common.core.exception.OrderException;
 import com.zzw.common.core.util.KeyUtil;
 import com.zzw.core.api.dto.order.OrderDTO;
 import com.zzw.core.api.dto.product.CartDTO;
@@ -28,18 +33,18 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 import java.util.stream.Collectors;
 
-/**   
+/**
  * <p>自动生成工具：mybatis-dsc-generator</p> 
- * 
+ *
  * <p>说明： 订单信息服务实现层</P>
  * @version: V1.0
  * @author: zzw
- * 
+ *
  */
 @Service
 @AllArgsConstructor
 @Transactional
-public class OrderMasterServiceImpl extends ServiceImpl<OrderMasterMapper, OrderMaster> implements OrderMasterService  {
+public class OrderMasterServiceImpl extends ServiceImpl<OrderMasterMapper, OrderMaster> implements OrderMasterService {
     private ProductFeign productFeign;
     private OrderDetailMapper orderDetailMapper;
 
@@ -56,12 +61,12 @@ public class OrderMasterServiceImpl extends ServiceImpl<OrderMasterMapper, Order
         AtomicReference<BigDecimal> orderAmount = new AtomicReference<>(new BigDecimal(BigInteger.ZERO));
         orderDTO.getOrderDetailList().forEach(orderDetail -> {
             productInfoList.forEach(productInfo -> {
-                if(productInfo.getProductId().equals(orderDetail.getProductId())){
+                if (productInfo.getProductId().equals(orderDetail.getProductId())) {
                     //单价*数量
                     orderAmount.set(productInfo.getProductPrice()
                             .multiply(new BigDecimal(orderDetail.getProductQuantity()))
                             .add(orderAmount.get()));
-                    BeanUtils.copyProperties(productInfo,orderDetail);
+                    BeanUtils.copyProperties(productInfo, orderDetail);
                     orderDetail.setOrderId(orderId);
                     orderDetail.setDetailId(KeyUtil.genUniqueKey());
                     //订单详情入库
@@ -71,15 +76,39 @@ public class OrderMasterServiceImpl extends ServiceImpl<OrderMasterMapper, Order
         });
         // 3.扣库存
         List<CartDTO> cartDTOList = orderDTO.getOrderDetailList().stream()
-                .map(e -> new CartDTO(e.getProductId(),e.getProductQuantity()))
+                .map(e -> new CartDTO(e.getProductId(), e.getProductQuantity()))
                 .collect(Collectors.toList());
         productFeign.decreaseStock(cartDTOList);
         // 4.订单入库
         OrderMaster orderMaster = new OrderMaster();
         orderDTO.setOrderId(orderId);
-        BeanUtils.copyProperties(orderDTO,orderMaster);
+        BeanUtils.copyProperties(orderDTO, orderMaster);
         orderMaster.setOrderAmount(orderAmount.get());
         baseMapper.insert(orderMaster);
+        return orderDTO;
+    }
+
+    @Override
+    public OrderDTO finish(String orderId) {
+        //1.查询订单
+        OrderMaster orderMaster = baseMapper.selectById(orderId);
+        if (ObjectUtils.isEmpty(orderMaster)) {
+            throw new OrderException(ResultEnum.ORDER_NOT_EXIST);
+        }
+        //2.判断订单状态
+        if (!OrderStatusEnum.NEW.getCode().equals(orderMaster.getOrderStatus())) {
+            throw new OrderException(ResultEnum.ORDER_STATUS_ERROR);
+        }
+
+        //3.修改完结
+        orderMaster.setOrderStatus(OrderStatusEnum.FINISHED.getCode());
+        baseMapper.updateById(orderMaster);
+
+        //4.查询订单详情
+        List<OrderDetail> orderDetailList = orderDetailMapper.selectList(Wrappers.<OrderDetail>lambdaQuery().eq(OrderDetail::getOrderId,orderId));
+        OrderDTO orderDTO = new OrderDTO();
+        BeanUtils.copyProperties(orderMaster,orderDTO);
+        orderDTO.setOrderDetailList(orderDetailList);
         return orderDTO;
     }
 }

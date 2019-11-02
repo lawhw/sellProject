@@ -17,7 +17,7 @@
         <java.version>1.8</java.version>
         <spring-cloud.version>Finchley.SR3</spring-cloud.version>
         <spring-boot.version>2.0.8.RELEASE</spring-boot.version>
-        <mysql.version>8.0.11</mysql.version>
+        <mysql.version>8.0.18</mysql.version>
         <mybatis-plus.version>3.1.0</mybatis-plus.version>
         <velocity.version>1.7</velocity.version>
         <springfox-swagger2>2.9.2</springfox-swagger2>
@@ -79,6 +79,24 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
+
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.cloud</groupId>-->
+            <!--<artifactId>spring-cloud-starter-sleuth</artifactId>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+            <!--<groupId>org.springframework.cloud</groupId>-->
+            <!--<artifactId>spring-cloud-sleuth-zipkin</artifactId>-->
+        <!--</dependency>-->
+        <!--包含上面两个 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-zipkin</artifactId>
+        </dependency>
+
+
+
     </dependencies>
     <dependencyManagement>
 

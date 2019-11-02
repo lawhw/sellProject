@@ -69,11 +69,8 @@ public class LoginController {
     public R seller(@RequestParam("openid") String openid, HttpServletRequest request, HttpServletResponse response) throws Exception {
         //判断是否登录
         Cookie cookie = CookieUtil.get(request, CommonConstants.TOKEN);
-        String requestToken = redisTemplate.opsForValue().get(
-                String.format(CommonConstants.TOKEN_TEMPLATE, cookie.getValue())
-        );
         if (ObjectUtils.isNotEmpty(cookie) &&
-                StringUtils.isNotEmpty(requestToken)) {
+                StringUtils.isNotEmpty(redisTemplate.opsForValue().get(String.format(CommonConstants.TOKEN_TEMPLATE, cookie.getValue())))) {
             return new R();
         }
 
